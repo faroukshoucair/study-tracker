@@ -1,8 +1,8 @@
-let stopwatchDisplay = document.getElementById("stopwatch-display");
-let startButton = document.getElementById("start-button");
-let stopButton = document.getElementById("stop-button");
-let resetButton = document.getElementById("reset-button");
-
+const stopwatchDisplay = document.getElementById("stopwatch-display");
+const startButton = document.getElementById("start-button");
+const stopButton = document.getElementById("stop-button");
+const resetButton = document.getElementById("reset-button");
+const saveButton = document.getElementById("save-button");
 
 let isRunning = false;
 let startTime = 0;
@@ -15,7 +15,7 @@ startButton.addEventListener("click", function () {
     timer = setInterval(updateDisplay, 500);
     isRunning = true;
   }
-});
+})
 
 
 stopButton.addEventListener("click", function () {
@@ -24,7 +24,7 @@ stopButton.addEventListener("click", function () {
     timer = null;
     isRunning = false;
   }
-});
+})
 
 resetButton.addEventListener("click", function () {
   isRunning = false;
@@ -33,7 +33,7 @@ resetButton.addEventListener("click", function () {
   clearInterval(timer);
   timer = null;
   stopwatchDisplay.textContent = "00:00:00";
-});
+})
 
 
 
@@ -52,6 +52,53 @@ function updateDisplay() {
 
 
 
+//get datta
+const getData = async () => {
+  try {
+    const data = await fetch("http://127.0.0.1:8000/log");
+    const dataJson = await data.json();
+  } catch (error) {
+    console.error("Unexpected behavoir: " + error);
+  }
 
+};
+
+
+//send data
+const sendData = async (elapsedTimeSeconds) => {
+  try {
+    const data = await fetch("http://127.0.0.1:8000/log", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ duration: elapsedTimeSeconds }),
+    });
+
+    const dataJson = await data.json();
+
+    if (data.ok) {
+      return true;
+    }
+
+  } catch (error) {
+    console.error("Unexpected behavoir: " + error);
+    return false;
+  }
+
+};
+
+
+saveButton.addEventListener("click", async function () {
+  const elapsedTimeSeconds = Math.floor(elapsedTime / 1000);
+  console.log(elapsedTimeSeconds);
+  const log_result = await sendData(elapsedTimeSeconds);
+  if (log_result) {
+    alert("Data logged");
+  }
+  else {
+    alert("Data was NOT logged");
+  }
+})
 
 
