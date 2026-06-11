@@ -36,7 +36,6 @@ def root():
 
 @app.post("/log")
 def log_entry(duration: float = Body(embed=True), db: Session=Depends(get_db)):
-    print(duration)
     new_log = models.StudyLog(duration=duration)
     db.add(new_log)
     db.commit()

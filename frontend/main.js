@@ -91,7 +91,6 @@ const sendData = async (elapsedTimeSeconds) => {
 
 saveButton.addEventListener("click", async function () {
   const elapsedTimeSeconds = Math.floor(elapsedTime / 1000);
-  console.log(elapsedTimeSeconds);
   const log_result = await sendData(elapsedTimeSeconds);
   if (log_result) {
     alert("Data logged");
