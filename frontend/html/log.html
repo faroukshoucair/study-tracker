@@ -26,9 +26,22 @@
     </nav>
   </div>
 
-  <div class="activity-graph-container">
-    
-  </div>
-  <script src="/study-tracker-project/frontend/main.js"></script>
+  <div class="wrapper">
+    <div class="month-container">
+      <svg id="prev-button" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      <div class="month-selector-container">
+        <p class="current-month">Month</p>
+        <div class="dropdown-trigger">
+          <svg id="down-button" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          <select id="month-year-select"></select>
+        </div>
+      </div>
+      <svg id="next-button" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </div>
+    <div class="activity-graph-container">
+      <div class="activity-graph"></div>
+    </div>
+  <div>
+  <script src="/study-tracker-project/frontend/log.js"></script>
 </body>
 </html>

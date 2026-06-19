@@ -36,7 +36,6 @@ resetButton.addEventListener("click", function () {
 })
 
 
-
 function updateDisplay() {
   let currentTime = Date.now();
   elapsedTime = currentTime - startTime;
@@ -51,17 +50,20 @@ function updateDisplay() {
 }
 
 
-
-//get datta
-const getData = async () => {
-  try {
-    const data = await fetch("http://127.0.0.1:8000/log");
-    const dataJson = await data.json();
-  } catch (error) {
-    console.error("Unexpected behavoir: " + error);
+saveButton.addEventListener("click", async function () {
+  const elapsedTimeSeconds = Math.floor(elapsedTime / 1000);
+  const log_result = await sendData(elapsedTimeSeconds);
+  if (log_result) {
+    alert("Data logged");
   }
+  else {
+    alert("Data was NOT logged");
+  }
+})
 
-};
+const months = ["January", "Febuary", "March", "April", "May",
+  "June", "July", "August", "September", "October", "November", 'Decemeber'
+];
 
 
 //send data
@@ -87,17 +89,5 @@ const sendData = async (elapsedTimeSeconds) => {
   }
 
 };
-
-
-saveButton.addEventListener("click", async function () {
-  const elapsedTimeSeconds = Math.floor(elapsedTime / 1000);
-  const log_result = await sendData(elapsedTimeSeconds);
-  if (log_result) {
-    alert("Data logged");
-  }
-  else {
-    alert("Data was NOT logged");
-  }
-})
 
 

@@ -36,6 +36,8 @@ a:hover {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 40px;
   margin: 20px;
+  font-weight: 600;
+  font-size: 20px;
 }
 
 .stopwatch-container {
@@ -71,10 +73,115 @@ a:hover {
 #start-button:hover,
 #stop-button:hover,
 #reset-button:hover,
-#save-button:hover {
-  text-decoration: underline;
-  transform: scale(1.05);
+#save-button:hover,
+#prev-button:hover,
+#next-button:hover {
+  transform: scale(1.20);
+  opacity: 0.7;
 }
+
+#start-button:active,
+#stop-button:active,
+#reset-button:active,
+#save-button:active,
+#prev-button:active,
+#next-button:active {
+  transform: scale(1.30);
+  opacity: 0.5;
+}
+
+
+.month-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  font-size: 20px;
+
+}
+
+.month-selector-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 200px;
+}
+
+.current-month {
+  text-align: center;
+  font-weight: 500;
+}
+
+
+.activity-graph-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.activity-graph {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  max-width: 375px;
+  gap: 8px;
+
+}
+
+.day-square {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+}
+
+
+#prev-button,
+#next-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2px 15px;
+  cursor: pointer;
+
+}
+
+#down-button {
+  cursor: pointer;
+}
+
+.dropdown-trigger {
+  position: relative;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#month-year-select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+
+
 
 
 @media (max-width: 420px) {
@@ -102,8 +209,16 @@ a:hover {
   #stop-button:hover,
   #reset-button:hover,
   #save-button:hover {
-    text-decoration: none;
     transform: none;
+    opacity: 1;
+  }
+
+  #start-button:active,
+  #stop-button:active,
+  #reset-button:active,
+  #save-button:active {
+    transform: none;
+    opacity: 1;
   }
 
   /* AI code to remove bubbles for smaller screens */
@@ -115,6 +230,10 @@ a:hover {
   }
 
 }
+
+
+
+
 
 
 
