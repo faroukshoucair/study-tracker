@@ -72,23 +72,32 @@ function renderCalender(currentDate) {
 
     const secondsStudied = studyMap[logKey] || 0;
 
+    const hoursStudied = Math.floor(secondsStudied / 3600);
+    const minutesStudied = Math.floor((secondsStudied % 3600) / 60);
+
     if (secondsStudied === 0) {
       newSquare.classList.add("level-null"); // no time studied
+      newSquare.setAttribute("data-tooltip", `${formattedMonth}/${formattedDay}/${currentYear}: You did not study on this day.`);
     }
     else if (secondsStudied <= 10800) { // less than or equal to 3 hours of study
       newSquare.classList.add("level-one");
+      newSquare.setAttribute("data-tooltip", `${formattedMonth}/${formattedDay}/${currentYear}: You studied for ${hoursStudied} hours and ${minutesStudied} minutes`);
     }
     else if (secondsStudied <= 21600) { // less than or equal to 6 hours of study
       newSquare.classList.add("level-two");
+      newSquare.setAttribute("data-tooltip", `${formattedMonth}/${formattedDay}/${currentYear}: You studied for ${hoursStudied} hours and ${minutesStudied} minutes`);
     }
     else if (secondsStudied <= 28800) { // less than or equal to 8 hours of study
       newSquare.classList.add("level-three");
+      newSquare.setAttribute("data-tooltip", `${formattedMonth}/${formattedDay}/${currentYear}: You studied for ${hoursStudied} hours and ${minutesStudied} minutes`);
     }
     else if (secondsStudied > 28800) { // greater than 8 hours of study
       newSquare.classList.add("level-four");
+      newSquare.setAttribute("data-tooltip", `${formattedMonth}/${formattedDay}/${currentYear}: You studied for ${hoursStudied} hours and ${minutesStudied} minutes`);
     }
     else {
       newSquare.classList.add("level-null");
+      newSquare.setAttribute("data-tooltip", `${formattedMonth}/${formattedDay}/${currentYear}: You did not study on this day.`);
     }
 
     activityGraph.appendChild(newSquare);
