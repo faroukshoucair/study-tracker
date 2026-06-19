@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from database import Base, engine, SessionLocal
 import models
 from fastapi.middleware.cors import CORSMiddleware
+from datetime import date
 
 
 app = FastAPI(title="Hello!")
