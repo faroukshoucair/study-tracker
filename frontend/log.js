@@ -5,20 +5,19 @@ const downButton = document.getElementById("month-year-select");
 const currentMonthLabel = document.querySelector(".current-month");
 const activityGraph = document.querySelector(".activity-graph");
 
+let fetchedLogs = [];
+
+
 dropdownMenu();
 
-
 const currentDate = new Date();
-renderCalender(currentDate);
 
 prevButton.addEventListener("click", function () {
-  activityGraph.textContent = "";
   currentDate.setMonth(currentDate.getMonth() - 1);
   renderCalender(currentDate);
 })
 
 nextButton.addEventListener("click", function () {
-  activityGraph.textContent = "";
   currentDate.setMonth(currentDate.getMonth() + 1);
   renderCalender(currentDate);
 })
@@ -46,15 +45,58 @@ function renderCalender(currentDate) {
   const daysInMonth = new Date(currentYear, currentMonthNumber + 1, 0).getDate();
 
 
+  const studyMap = {};
+  fetchedLogs.forEach(log => {
+    const logDate = log.date;
+    const duration = parseFloat(log.duration);
+
+    if (studyMap[logDate]) {
+      studyMap[logDate] += duration;
+    }
+    else {
+      studyMap[logDate] = duration;
+    }
+  });
+
 
   for (let i = 0; i < daysInMonth; i++) {
     const newSquare = document.createElement("div");
     newSquare.classList.add("day-square");
 
+    const day = i + 1;
+
+
+    const formattedMonth = String(currentMonthNumber + 1).padStart(2, "0");
+    const formattedDay = String(day).padStart(2, "0");
+    const logKey = `${currentYear}-${formattedMonth}-${formattedDay}`;
+
+    const secondsStudied = studyMap[logKey] || 0;
+
+    if (secondsStudied === 0) {
+      newSquare.classList.add("level-null"); // no time studied
+    }
+    else if (secondsStudied <= 10800) { // less than or equal to 3 hours of study
+      newSquare.classList.add("level-one");
+    }
+    else if (secondsStudied <= 21600) { // less than or equal to 6 hours of study
+      newSquare.classList.add("level-two");
+    }
+    else if (secondsStudied <= 28800) { // less than or equal to 8 hours of study
+      newSquare.classList.add("level-three");
+    }
+    else if (secondsStudied > 28800) { // greater than 8 hours of study
+      newSquare.classList.add("level-four");
+    }
+    else {
+      newSquare.classList.add("level-null");
+    }
+
     activityGraph.appendChild(newSquare);
-    newSquare.textContent = i + 1;
+    newSquare.textContent = day;
 
   }
+
+
 
 
 }
@@ -90,9 +132,12 @@ function dropdownMenu() {
 const getData = async () => {
   try {
     const data = await fetch("http://127.0.0.1:8000/log");
-    const dataJson = await data.json();
+    fetchedLogs = await data.json();
+    renderCalender(currentDate);
   } catch (error) {
     console.error("Unexpected behavoir: " + error);
+    renderCalender(currentDate);
   }
 
 };
+getData();

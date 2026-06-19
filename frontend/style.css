@@ -180,6 +180,30 @@ a:hover {
 }
 
 
+/* less than or equal to 3 hours of work/study */
+.level-one {
+  background-color: #7F9172;
+}
+
+/* less than or eequal to 6 hours of worl/study */
+.level-two {
+  background-color: #7D84B2;
+}
+
+/* less than or equal to 8 hours of work/study */
+.level-three {
+  background-color: #8499B1;
+}
+
+/* greater than 8 hours of work/study */
+.level-four {
+  background-color: #640D14;
+}
+
+.level-null {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 
 
 
@@ -230,10 +254,6 @@ a:hover {
   }
 
 }
-
-
-
-
 
 
 
