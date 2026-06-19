@@ -61,9 +61,22 @@ saveButton.addEventListener("click", async function () {
   }
 })
 
-const months = ["January", "Febuary", "March", "April", "May",
-  "June", "July", "August", "September", "October", "November", 'Decemeber'
-];
+
+// to prevent user from going to logs while stopwatching is running
+const studyLogLink = document.querySelector('a[href="log.html"]');
+if (studyLogLink) {
+  studyLogLink.addEventListener("click", function (event) {
+    if (isRunning) {
+      event.preventDefault();
+
+      const leavePage = confirm("Log time before switching over!!!");
+
+      if (leavePage) {
+        window.location.href = "log.html";
+      }
+    }
+  })
+}
 
 
 //send data
