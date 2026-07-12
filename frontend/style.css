@@ -10,6 +10,7 @@ body {
   font-size: 16px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 a {
@@ -231,6 +232,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 15px;
   min-height: 80vh;
 }
@@ -310,6 +312,10 @@ a:hover {
   #save-button:active {
     transform: none;
     opacity: 1;
+  }
+
+  .wrapper {
+    width: 90vw;
   }
 
   /* AI code to remove bubbles for smaller screens */
