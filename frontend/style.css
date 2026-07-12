@@ -297,14 +297,16 @@ a:hover {
   #start-button,
   #stop-button,
   #reset-button,
-  #save-button {
+  #save-button,
+  .submit-button {
     padding: 15px 30px;
   }
 
   #start-button:hover,
   #stop-button:hover,
   #reset-button:hover,
-  #save-button:hover {
+  #save-button:hover,
+  .submit-button:hover {
     transform: none;
     opacity: 1;
   }
@@ -312,7 +314,8 @@ a:hover {
   #start-button:active,
   #stop-button:active,
   #reset-button:active,
-  #save-button:active {
+  #save-button:active,
+  .submit-button:active {
     transform: none;
     opacity: 1;
   }
