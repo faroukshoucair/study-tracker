@@ -62,7 +62,8 @@ a:hover {
 #start-button,
 #stop-button,
 #reset-button,
-#save-button {
+#save-button,
+.submit-button {
   border-radius: 30px;
   border: none;
   padding: 10px 23px;
@@ -75,7 +76,8 @@ a:hover {
 #reset-button:hover,
 #save-button:hover,
 #prev-button:hover,
-#next-button:hover {
+#next-button:hover,
+.submit-button:hover {
   transform: scale(1.20);
   opacity: 0.7;
 }
@@ -85,7 +87,8 @@ a:hover {
 #reset-button:active,
 #save-button:active,
 #prev-button:active,
-#next-button:active {
+#next-button:active,
+.submit-button:active {
   transform: scale(1.30);
   opacity: 0.5;
 }
@@ -222,6 +225,54 @@ a:hover {
 
 
 
+/*About Page CSS*/
+.faq-container {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-height: 80vh;
+}
+
+.faq-1,
+.faq-2,
+.faq-3 {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 30px 70px;
+  text-align: center;
+  width: 60%;
+  max-width: 900px;
+}
+
+.faq-question {
+  font-size: 25px;
+  padding-bottom: 10px;
+}
+
+.faq-answer {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.report-bug-container {
+  margin-top: auto;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+.bug-input {
+  width: 50vw;
+  padding: 13px 18px;
+  max-width: 800px;
+  font-family: inherit;
+  border: 1px solid;
+  border-radius: 25px;
+}
 
 
 @media (max-width: 420px) {
