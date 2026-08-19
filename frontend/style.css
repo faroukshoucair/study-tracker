@@ -288,7 +288,8 @@ a:hover {
   width: 100%;
 }
 
-.signin-form {
+.signin-form,
+.signup-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -319,7 +320,7 @@ a:hover {
   font-size: 16px;
   padding: 8px 18px;
   border-radius: 25px;
-  border: solid 2px black;
+  border: solid 1px black;
   color: black;
   width: 100%;
   background: transparent;
@@ -350,11 +351,15 @@ a:hover {
   opacity: 0.5;
 }
 
-.signin-form p a {
+.signin-form p a,
+.signup-form p a {
   text-decoration: underline;
   color: darkblue;
 }
 
+.hidden {
+  display: none !important;
+}
 
 
 @media (max-width: 420px) {
