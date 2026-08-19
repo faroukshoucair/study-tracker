@@ -416,10 +416,28 @@ a:hover {
 
 }
 
+@media (max-width: 520px) {
 
+  .signin-form,
+  .signup-form {
+    padding: 60px 80px;
+  }
+}
 
+@media (max-width: 415px) {
 
+  .signin-form,
+  .signup-form {
+    padding: 60px 65px;
+  }
+}
 
+@media (max-width: 695px) {
+  .form-submit-button {
+    width: 50vw;
+    align-self: center;
+  }
+}
 
 
 
