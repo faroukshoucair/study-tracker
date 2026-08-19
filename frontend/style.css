@@ -280,6 +280,83 @@ a:hover {
 }
 
 
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 60px 120px;
+  border-radius: 30px;
+  width: 90%;
+  max-width: 670px;
+  box-sizing: border-box;
+}
+
+.form-header {
+  font-size: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.form-input {
+  font-size: 16px;
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: solid 2px black;
+  color: black;
+  width: 100%;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+
+.form-submit-button {
+  width: 30%;
+  align-self: center;
+  border: none;
+  border-radius: 15px;
+  padding: 12px 12px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.form-submit-button:hover {
+  transform: scale(1.05);
+  opacity: 0.7;
+}
+
+.form-submit-button:active {
+  transform: scale(1.10);
+  opacity: 0.5;
+}
+
+.signin-form p a {
+  text-decoration: underline;
+  color: darkblue;
+}
+
+
+
 @media (max-width: 420px) {
   .stopwatch-container {
     padding: 0px 20px;
@@ -333,6 +410,11 @@ a:hover {
   }
 
 }
+
+
+
+
+
 
 
 
