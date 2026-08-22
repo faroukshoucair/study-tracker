@@ -1,12 +1,21 @@
-from fastapi import FastAPI, HTTPException, Depends, Body
+from fastapi import FastAPI, HTTPException, Depends, Body, status
 from sqlalchemy.orm import Session
 from database import Base, engine, SessionLocal
 import models
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import date
+from passlib.context import CryptContext
+from pydantic import BaseModel
 
 
-app = FastAPI(title="Hello!")
+
+app = FastAPI(title="Study Tracker")
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+class LoginSchema(BaseModel):
+    username: str
+    password: str
 
 origins = [
     "http://127.0.0.1:5500",
@@ -47,3 +56,15 @@ def log_entry(duration: float = Body(embed=True), db: Session=Depends(get_db)):
 def get_data(db: Session=Depends(get_db)):
     all_logs = db.query(models.StudyLog).all()
     return all_logs
+
+@app.post("/signup")
+def signup(data: LoginSchema, db: Session=Depends(get_db)):
+    existing_user = db.query(models.User).filter(models.User.username == data.username)
+    if existing_user:
+        raise HTTPException(status_code=status.HTTP_409_UNAUTHORIZED, detail="Username already taken")
+    hashed_pwd = pwd_context.hash(data.password)
+    new_user = models.User(username=data.username, hashed_password=hashed_pwd)
+    db.add(new_user)
+    db.commit()
+    return {"message": "Account created"}
+
