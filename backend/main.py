@@ -59,7 +59,7 @@ def get_data(db: Session=Depends(get_db)):
 
 @app.post("/signup")
 def signup(data: LoginSchema, db: Session=Depends(get_db)):
-    existing_user = db.query(models.User).filter(models.User.username == data.username)
+    existing_user = db.query(models.User).filter(models.User.username == data.username).fisrt()
     if existing_user:
         raise HTTPException(status_code=status.HTTP_409_UNAUTHORIZED, detail="Username already taken")
     hashed_pwd = pwd_context.hash(data.password)
@@ -68,3 +68,11 @@ def signup(data: LoginSchema, db: Session=Depends(get_db)):
     db.commit()
     return {"message": "Account created"}
 
+#its better to not explicity tell users when its an incoorect username or incorrect passowrd for safety reasons
+@app.post("/login")
+def login(data: LoginSchema, db: Session=Depends(get_db)):
+    user = db.query(models.User).filter(models.User.username == data.username).first()
+    password_matches = pwd_context.verify(data.password, user.hashed_password)
+    if not user or not password_matches:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password")
+    return {"message": "login successful"}
